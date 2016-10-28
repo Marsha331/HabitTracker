@@ -4,7 +4,6 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import net.swallowsnest.habittracker.data.HabitDbHelper;
 import net.swallowsnest.habittracker.data.HabitContract.HabitEntry;
 
 /**
@@ -19,7 +18,7 @@ public class HabitDbHelper extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "habits.db";
 
     //database version
-    public static final int DATABASE_VERSION = 1;
+    public static final int DATABASE_VERSION = 2;
 
     public HabitDbHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -32,7 +31,7 @@ public class HabitDbHelper extends SQLiteOpenHelper {
                 + HabitEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + HabitEntry.COLUMN_DATE + " TEXT, "
                 + HabitEntry.COLUMN_TEETH + " INTEGER, "
-                + HabitEntry.COLUMN_HABIT + "TEXT)";
+                + HabitEntry.COLUMN_HABIT + " TEXT);";
 
         //execute db
         db.execSQL(SQL_CREATE_HABIT_TABLE);
@@ -41,6 +40,9 @@ public class HabitDbHelper extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         //nothing to do here yet cause we're on version 1
+        // The database is still at version 1, so there's nothing to be done here.
+        db.execSQL("drop table if exists " + HabitContract.HabitEntry.TABLE_NAME);
+        onCreate(db);
     }
 }
 

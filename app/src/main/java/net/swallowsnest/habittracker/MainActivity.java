@@ -3,19 +3,12 @@ package net.swallowsnest.habittracker;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.support.v4.app.NavUtils;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-
+import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import net.swallowsnest.habittracker.R;
 import net.swallowsnest.habittracker.data.HabitContract.HabitEntry;
 import net.swallowsnest.habittracker.data.HabitDbHelper;
-
-import static android.R.attr.inset;
-import static android.R.attr.name;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -52,7 +45,8 @@ public class MainActivity extends AppCompatActivity {
                 HabitEntry._ID,
                 HabitEntry.COLUMN_DATE,
                 HabitEntry.COLUMN_TEETH,
-                HabitEntry.COLUMN_HABIT};
+                HabitEntry.COLUMN_HABIT
+        };
 
         // Perform query
         return db.query(
@@ -62,7 +56,8 @@ public class MainActivity extends AppCompatActivity {
                 null,
                 null,
                 null,
-                null);
+                null
+        );
     }
 
     private void updateDisplay() {
@@ -73,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
 
         try {
             display.append(
-                            HabitEntry._ID + " - " +
+                    HabitEntry._ID + " - " +
                             HabitEntry.COLUMN_DATE + " - " +
                             HabitEntry.COLUMN_TEETH + " - " +
                             HabitEntry.COLUMN_HABIT + " - " + "\n"
@@ -94,7 +89,8 @@ public class MainActivity extends AppCompatActivity {
                         id + " - " +
                         date + " - " +
                         teeth + " - " +
-                        habit);
+                        habit
+                );
             }
         } finally {
             cursor.close();
