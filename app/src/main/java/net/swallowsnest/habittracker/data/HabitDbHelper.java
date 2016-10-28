@@ -3,6 +3,7 @@ package net.swallowsnest.habittracker.data;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
 import net.swallowsnest.habittracker.data.HabitDbHelper;
 import net.swallowsnest.habittracker.data.HabitContract.HabitEntry;
 
@@ -15,7 +16,7 @@ public class HabitDbHelper extends SQLiteOpenHelper {
     public static final String LOG_TAG = HabitDbHelper.class.getName();
 
     //database name
-    public static final String DATABASE_NAME = "habit.db";
+    public static final String DATABASE_NAME = "habits.db";
 
     //database version
     public static final int DATABASE_VERSION = 1;
@@ -25,13 +26,12 @@ public class HabitDbHelper extends SQLiteOpenHelper {
     }
 
     @Override
-    public void onCreate(SQLiteDatabase db){
+    public void onCreate(SQLiteDatabase db) {
         //string for the SQL create table statement
         String SQL_CREATE_HABIT_TABLE = "CREATE TABLE " + HabitEntry.TABLE_NAME + "("
                 + HabitEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-                + HabitEntry.COLUMN_NAME + "TEXT, "
                 + HabitEntry.COLUMN_DATE + " TEXT, "
-                + HabitEntry.COLUMN_TEETH + " INTEGER NOT NULL, "
+                + HabitEntry.COLUMN_TEETH + " INTEGER, "
                 + HabitEntry.COLUMN_HABIT + "TEXT)";
 
         //execute db
